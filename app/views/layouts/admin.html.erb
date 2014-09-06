@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RailsForum</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="top-menu">
+  <nav class="ink-navigation ink-grid">
+    <ul class="menu horizontal black">
+      <li class="title"><%= link_to "LatCMS Admin", admin_root_path -%></li>
+      <li class="active"><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+    </ul>
+  </nav>
+</div>
+<div class="content ink-grid">
+  <% flash.each do |name, msg| -%>
+    <%= flash_msg name, msg %>
+  <% end -%>
+  <%= yield %>
+</div>
+<footer class="clearfix">
+  <div class="ink-grid">
+    <p class="note">&copy; <%= Time.now.year %> Mike Lat</p>
+  </div>
+</footer>
+<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+</body>
+</html>
