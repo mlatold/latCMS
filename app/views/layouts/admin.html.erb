@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RailsForum</title>
+  <title>LatCMS</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 <div class="top-menu">
-  <nav class="ink-navigation ink-grid">
+  <nav class="ink-navigation ink-grid" id="admin_nav">
     <ul class="menu horizontal black">
       <li class="title"><%= link_to "LatCMS Admin", admin_root_path -%></li>
       <li class="active"><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
+      <li class=""><a href="#">2</a></li>
     </ul>
   </nav>
 </div>
