@@ -3,9 +3,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'dashboard#index'
-    resources :session
-    get "admin"
-    get "admin/dashboard"
+    resources :sessions, only: [:new, :create, :destroy]
+    #get "admin"
+    #get "admin/dashboard"
   end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
