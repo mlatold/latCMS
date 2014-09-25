@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>LatCMS</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -17,9 +17,14 @@
   </nav>
 </div>
 <div class="content ink-grid">
-  <% flash.each do |name, msg| -%>
-    <%= flash_msg name, msg %>
-  <% end -%>
+  <% flash.each do |name, msg| %>
+    <% if ['warning', 'note', 'done', 'error'].include? name %>
+      <div class="ink-alert basic <%= name unless name == "alert" -%>" role="alert">
+        <button class="ink-dismiss">&times;</button>
+        <p><%= msg -%></p>
+      </div>
+    <% end %>
+  <% end %>
   <%= yield %>
 </div>
 <footer class="clearfix">

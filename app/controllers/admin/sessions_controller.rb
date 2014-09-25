@@ -3,17 +3,19 @@ class Admin::SessionsController < AdminController
   end
 
   def create
-    user = User.find_by(email: params[:session][:email].downcase)
+    user = Admin::User.find_by(email: params[:admin_session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-      sign_in user
-      redirect_back_or user
+      flash.now[:done] = "Logged in successfully!"
+      #sign_in user
+      #redirect_back_or user
     else
-      flash.now[:error] = 'Invalid email/password combination'
+      flash.now[:error] = "Invalid credentials"
       render 'new'
     end
   end
 
   def destroy
+    flash.now[:done] = "Logged out successfully!"
     redirect_to root_url
   end
 end
