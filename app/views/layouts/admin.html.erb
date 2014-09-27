@@ -11,15 +11,18 @@
   <nav class="ink-navigation ink-grid" id="admin_nav">
     <ul class="menu horizontal black">
       <li class="title"><%= link_to "LatCMS Admin", admin_root_path -%></li>
-      <li class="active"><a href="#">1</a></li>
-      <li class=""><a href="#">2</a></li>
+      <% if @current_user %>
+        <li><%= link_to "Logout", admin_session_path(@current_user), :method => :delete %></li>
+        <li class="active"><a href="#">Users</a></li>
+        <li class=""><a href="#">Pages</a></li>
+      <% end %>
     </ul>
   </nav>
 </div>
 <div class="content ink-grid">
   <% flash.each do |name, msg| %>
-    <% if ['warning', 'note', 'done', 'error'].include? name %>
-      <div class="ink-alert basic <%= name unless name == "alert" -%>" role="alert">
+    <% if ['alert', 'notice'].include? name %>
+      <div class="ink-alert basic <%= name == "alert" ? "error" : "success" -%>" role="alert">
         <button class="ink-dismiss">&times;</button>
         <p><%= msg -%></p>
       </div>

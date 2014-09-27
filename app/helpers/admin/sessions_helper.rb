@@ -1,6 +1,6 @@
 module Admin::SessionsHelper
   def brute_force_counter(remote_ip: request.remote_ip)
-    bf = BruteForce.where "remote_ip=? and created_at>=?", remote_ip, DateTime.now - 10.minutes
+    bf = BruteForce.where("remote_ip=? and created_at>=?", remote_ip, DateTime.now - 10.minutes)
     bf.empty? ? 0 : bf.first.counter
   end
 
