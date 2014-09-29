@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>LatCMS</title>
+  <title>LatCMS<%= " :: " << content_for(:title) if content_for?(:title) -%></title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,10 +11,10 @@
   <nav class="ink-navigation ink-grid" id="admin_nav">
     <ul class="menu horizontal black">
       <li class="title"><%= link_to "LatCMS Admin", admin_root_path -%></li>
-      <% if @current_user %>
+      <% if @current_user.id %>
         <li><%= link_to "Logout", admin_session_path(@current_user), :method => :delete %></li>
-        <li class="active"><a href="#">Users</a></li>
-        <li class=""><a href="#">Pages</a></li>
+        <li<%= current_page?(controller: 'users') ? ' class="active"'.html_safe : "" %>><%= link_to "Users", admin_users_path %></li>
+        <li<%= current_page?(controller: 'pages') ? ' class="active"'.html_safe : "" %>><a href="#">Pages</a></li>
       <% end %>
     </ul>
   </nav>
