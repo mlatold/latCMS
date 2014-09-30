@@ -11,7 +11,7 @@
   <nav class="ink-navigation ink-grid" id="admin_nav">
     <ul class="menu horizontal black">
       <li class="title"><%= link_to "LatCMS Admin", admin_root_path -%></li>
-      <% if @current_user.id %>
+      <% if @current_user %>
         <li><%= link_to "Logout", admin_session_path(@current_user), :method => :delete %></li>
         <li<%= current_page?(controller: 'users') ? ' class="active"'.html_safe : "" %>><%= link_to "Users", admin_users_path %></li>
         <li<%= current_page?(controller: 'pages') ? ' class="active"'.html_safe : "" %>><a href="#">Pages</a></li>

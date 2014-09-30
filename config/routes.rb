@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'dashboard#index'
     resources :sessions, only: [:new, :create, :destroy]
-    resources :users
+    resources :users, except: :show
     resources :pages
   end
 end
