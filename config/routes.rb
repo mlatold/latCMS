@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  root 'page#index'
 
   namespace :admin do
     root 'dashboard#index'
@@ -7,4 +6,7 @@ Rails.application.routes.draw do
     resources :users, except: :show
     resources :pages
   end
+
+  root "application#render_page"
+  match '*unmatched_route', :to => 'application#render_page', via: :get
 end

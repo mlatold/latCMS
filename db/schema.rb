@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140925213222) do
+ActiveRecord::Schema.define(version: 20140930211520) do
 
   create_table "admin_users", force: true do |t|
     t.string   "email"
@@ -22,11 +22,25 @@ ActiveRecord::Schema.define(version: 20140925213222) do
     t.datetime "updated_at"
   end
 
+  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
+  add_index "admin_users", ["user_secret"], name: "index_admin_users_on_user_secret"
+
   create_table "brute_forces", force: true do |t|
     t.string   "remote_ip"
     t.integer  "counter"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "brute_forces", ["remote_ip"], name: "index_brute_forces_on_remote_ip"
+
+  create_table "pages", force: true do |t|
+    t.string   "route"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pages", ["route"], name: "index_pages_on_route", unique: true
 
 end

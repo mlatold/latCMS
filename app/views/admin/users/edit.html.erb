@@ -3,11 +3,14 @@
 
 <%= form_for(@user, html: { class: "ink-form" }) do |f| %>
   <% if @user.errors.any? %>
-  <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
+  <div class="ink-alert block" role="alert">
+    <h4>There was an error submitting the form</h4>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
   <% end %>
   <div class="control-group">
     <%= f.label :email %>
@@ -29,6 +32,4 @@
     </div>
   </div>
   <%= f.submit "Save", class: "ink-button" %>
-
-<!--    render 'shared/error_messages', object: f.object -->
 <% end %>

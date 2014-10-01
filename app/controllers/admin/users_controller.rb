@@ -14,8 +14,12 @@ class Admin::UsersController < AdminController
   end
 
   def update
+    if params[:id].to_i == 1 and @current_user.id != 1
+      raise FatalError, "You are not allowed to edit the root user."
+    end
+
     @user = Admin::User.find(params[:id])
-    if @user.update_attributes(user_params)
+    if update_user
       redirect_to admin_users_path, notice: "User updated."
     else
       render 'edit'
@@ -31,8 +35,11 @@ class Admin::UsersController < AdminController
   end
 
   private
-    def user_params
-      puts params
-      params.require(:admin_user).permit(:email, :password, :password_confirmation)
+    def update_user
+      if params[:admin_user][:password] == ""
+        @user.update_attribute(:email, params[:admin_user][:email])
+      else
+        @user.update(params.require(:admin_user).permit(:email, :password, :password_confirmation))
+      end
     end
 end
