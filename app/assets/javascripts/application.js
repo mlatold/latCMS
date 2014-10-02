@@ -15,5 +15,6 @@
 //= require turbolinks
 //= require ink-all
 //= require autoload
+//= require redactor-rails
 //= require html5shiv
 //= require_tree .

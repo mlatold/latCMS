@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount RedactorRails::Engine => '/redactor_rails'
   namespace :admin do
     root 'dashboard#index'
     resources :sessions, only: [:new, :create, :destroy]
